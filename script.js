@@ -32,7 +32,7 @@ fetch("iron_1.json")
 
         const resultDiv = document.createElement("div");
         resultDiv.className = "result";
-        resultDiv.style.display = "none"; // 先隱藏
+        resultDiv.style.display = "none"; 
         resultDiv.dataset.correct = q.correct;
         resultDiv.dataset.options = JSON.stringify(q.options);
         resultDiv.dataset.qid = q.id;
@@ -75,16 +75,16 @@ fetch("iron_1.json")
     }
 
     function renderAttitudeSection(titleText, questions, sectionId) {
-      const section = document.createElement("div");
-      section.id = sectionId;
+    const section = document.createElement("div");
+    section.id = sectionId;
 
-      const title = document.createElement("h2");
-      title.textContent = titleText;
-      section.appendChild(title);
+    const title = document.createElement("h2");
+    title.textContent = titleText;
+    section.appendChild(title);
 
-      const options = ["非常同意", "同意", "不同意", "非常不同意"];
+    const options = ["非常同意", "同意", "不同意", "非常不同意"];
 
-      questions.forEach((q, index) => {
+    questions.forEach((q, index) => {
         const qDiv = document.createElement("div");
         qDiv.className = "question";
 
@@ -96,43 +96,38 @@ fetch("iron_1.json")
         optionsDiv.className = "options";
 
         options.forEach((opt) => {
-          const label = document.createElement("label");
-          label.innerHTML = `<input type="radio" name="${q.id}" value="${opt}">  ${opt}`;
-          optionsDiv.appendChild(label);
+        const label = document.createElement("label");
+        label.innerHTML = `<input type="radio" name="${q.id}" value="${opt}">  ${opt}`;
+        optionsDiv.appendChild(label);
         });
 
         qDiv.appendChild(optionsDiv);
-
-        const resultDiv = document.createElement("div");
-        resultDiv.className = "result";
-        resultDiv.style.display = "none";
-        resultDiv.textContent = "✅ 已提交";
-        qDiv.appendChild(resultDiv);
-
         section.appendChild(qDiv);
-      });
+    });
 
-      const button = document.createElement("button");
-      button.textContent = "提交";
-      button.onclick = () => {
-        const results = section.querySelectorAll(".result");
+    const resultDiv = document.createElement("div");
+    resultDiv.className = "result";
+    resultDiv.style.display = "none";
+    resultDiv.style.color = "green";
+    resultDiv.textContent = "✅ 已提交";
+    section.appendChild(resultDiv);
 
-        results.forEach((result) => {
-          result.style.display = "block";
-          result.style.color = "green";
-        });
-
+    const button = document.createElement("button");
+    button.textContent = "提交";
+    button.onclick = () => {
+        resultDiv.style.display = "block";
         button.disabled = true;
         button.textContent = "已提交";
-      };
+    };
 
-      section.appendChild(button);
-      container.appendChild(section);
+    section.appendChild(button);
+    container.appendChild(section);
     }
 
+
     // 渲染順序
-    renderKnowledgeSection("📘 知識題", data.knowledge1, "k1");
-    renderAttitudeSection("💬 態度題", data.attitude1, "a1");
-    renderKnowledgeSection("📘 知識題", data.knowledge2, "k2");
-    renderAttitudeSection("💬 態度題", data.attitude2, "a2");
+    renderKnowledgeSection("💡為什麼孕期容易缺鐵？貧血風險與影響", data.knowledge1, "k1");
+    renderAttitudeSection("💬 你的想法", data.attitude1, "a1");
+    renderKnowledgeSection("💡鐵的來源：食物來源與影響吸收食物", data.knowledge2, "k2");
+    renderAttitudeSection("💬 你的想法", data.attitude2, "a2");
   });
