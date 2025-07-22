@@ -66,8 +66,8 @@ fetch("iron_1.json")
           result.style.display = "block";
         });
 
-        button.disabled = true;
-        button.textContent = "已提交";
+        button.disabled = false;
+        button.textContent = "提交";
       };
 
       section.appendChild(button);
@@ -116,8 +116,8 @@ fetch("iron_1.json")
       button.textContent = "提交";
       button.onclick = () => {
         resultDiv.style.display = "block";
-        button.disabled = true;
-        button.textContent = "已提交";
+        button.disabled = false;
+        button.textContent = "提交";
       };
 
       section.appendChild(button);
