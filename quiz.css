@@ -1,0 +1,62 @@
+body {
+  background-color: #ffffff;   /* bg-gray-100 */
+  min-height: 100vh;           /* min-h-screen */
+  display: flex;               /* flex */
+  align-items: center;         /* items-center */
+  justify-content: center;     /* justify-center */
+  padding-left: 1rem;          /* px-4 → 16px */
+  padding-right: 1rem;
+  font-family: 'LXGW WenKai Mono TC', monospace;
+
+}
+
+div{
+  width: 100%;                    
+  max-width: 24rem;                 
+  background-color: #ffefeb;       
+  padding: 1.5rem;               
+  border-radius: 0.5rem;         
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1),
+              0 1px 2px rgba(0, 0, 0, 0.06); 
+}
+
+.botton-one, .botton-two, .botton-three, .botton-four{
+  width: 100%;
+  border-radius: 1rem; /* 更多圓角 */
+  background: #f0f0f3; /* 與 body 類似的背景色 */
+  box-shadow: 
+    8px 8px 16px #d1d9e6,  /* 深色陰影（下右） */
+    -8px -8px 16px #ffffff; /* 淺色高光（上左） */
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  padding: 2rem 2rem; /* 高度感 */
+  transition: all 0.3s ease;
+  font-family: 'LXGW WenKai Mono TC', monospace;
+  color: #333;
+  border: none;
+
+}
+
+.botton-one:hover, .botton-two:hover, .botton-three:hover, .botton-four:hover {
+  opacity: 0.9;
+  transform: translateY(-4px);  /* 漂浮效果 */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);  /* 加強陰影 */
+}
+
+.botton-one{
+  background-color: #ffdfd8;        
+}
+
+.botton-two{
+  background-color: #ffbfb1;               
+}
+
+.botton-three{
+  background-color: #ffae9d;              
+}
+
+.botton-four{
+  background-color: #ff9e8a;   
+  padding: 1rem 1rem; /* 高度感 */       
+}

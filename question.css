@@ -1,0 +1,48 @@
+body {
+  font-family: "微軟正黑體", sans-serif;
+  background-color: #fde5ce;
+  padding: 20px;
+}
+
+.quiz-container {
+  background-color: #fef8ef;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: #f9bd64;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(60, 60, 60, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  max-width: 300px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
