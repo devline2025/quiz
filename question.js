@@ -1,5 +1,8 @@
+// 動態取得當前頁面 HTML 檔名，並推測對應 JSON 檔
+const currentPage = window.location.pathname.split("/").pop();   // e.g. pregnant_ch3.html
+const jsonFilename = currentPage.replace(".html", ".json");     // → pregnant_ch3.json
 
-fetch("pregnant_ch2.json")
+fetch(jsonFilename)
   .then((res) => res.json())
   .then((data) => {
     const quizContainer = document.getElementById("quiz-container");
@@ -7,27 +10,21 @@ fetch("pregnant_ch2.json")
     const resultText = document.getElementById("resultText");
     const explanationText = document.getElementById("explanationText");
 
-    const allQuestions = [...data.knowledge.map(q => ({ ...q, type: "knowledge" })), 
-                          ...data.attitude.map(q => ({ ...q, type: "attitude" }))];
+    const allQuestions = [
+      ...data.knowledge.map(q => ({ ...q, type: "knowledge" })),
+      ...data.attitude.map(q => ({ ...q, type: "attitude" }))
+    ];
 
     let currentIndex = 0;
 
     function showQuestion(index) {
       const q = allQuestions[index];
       const isKnowledge = q.type === "knowledge";
-
-      let optionsHTML = "";
-      if (isKnowledge) {
-        optionsHTML = q.options.map(opt => `
-          <label><input type="radio" name="option" value="${opt}"> ${opt}</label><br>
-        `).join("");
-      } else {
-        optionsHTML = q.options.map(opt => `
-          <label><input type="radio" name="option" value="${opt}"> ${opt}</label><br>
-        `).join("");
-      }
-
       const questionText = isKnowledge ? q.question : q.statement;
+
+      const optionsHTML = q.options.map(opt => `
+        <label><input type="radio" name="option" value="${opt}"> ${opt}</label><br>
+      `).join("");
 
       quizContainer.innerHTML = `
         <h2>${index + 1}. ${questionText}</h2>

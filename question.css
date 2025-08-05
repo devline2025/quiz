@@ -5,6 +5,8 @@ body {
 }
 
 .quiz-container {
+  width: 100%;                    
+  max-width: 24rem;   
   background-color: #fef8ef;
   border-radius: 10px;
   padding: 20px;
@@ -24,6 +26,7 @@ button {
 }
 
 .modal {
+  width: 100%;   
   position: fixed;
   top: 0;
   left: 0;
