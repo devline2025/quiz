@@ -6,7 +6,7 @@ body {
 
 .quiz-container {
   width: 100%;                    
-  max-width: 24rem;   
+  /*max-width: 24rem;  */ 
   background-color: #fef8ef;
   border-radius: 10px;
   padding: 20px;
