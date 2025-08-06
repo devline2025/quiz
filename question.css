@@ -1,16 +1,17 @@
 body {
   font-family: "微軟正黑體", sans-serif;
-  background-color: #fde5ce;
+  background-color: #FFE4D6;
   padding: 20px;
+  display: flex;                /* 關鍵：讓內部水平置中 */
+  justify-content: center;     /* 水平置中 */
 }
 
 .quiz-container {
   width: 100%;                    
-  /*max-width: 24rem;  */ 
-  background-color: #fef8ef;
+  max-width: 24rem;  
+  background-color: #FDF6F0;
   border-radius: 10px;
   padding: 20px;
-  max-width: 400px;
   margin: auto;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
