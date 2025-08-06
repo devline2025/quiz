@@ -2,13 +2,13 @@ body {
   font-family: "微軟正黑體", sans-serif;
   background-color: #FFE4D6;
   padding: 20px;
-  display: flex;                /* 關鍵：讓內部水平置中 */
-  justify-content: center;     /* 水平置中 */
+  margin: 0;
 }
 
 .quiz-container {
-  width: 100%;                    
-  /*max-width: 24rem;  */
+  width: 100%;          
+  max-width: 500px;      /* 加上這行限制最大寬度 */
+  margin: 0 auto;        /* 置中 */
   background-color: #FDF6F0;
   border-radius: 10px;
   padding: 20px;
