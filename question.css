@@ -1,7 +1,8 @@
 body {
   font-family: "微軟正黑體", sans-serif;
   background-color: #FFE4D6;
-  padding: 32px;
+  padding: 20px;
+  font-size: 32px;
 }
 
 .quiz-container {
