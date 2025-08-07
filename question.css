@@ -42,13 +42,14 @@ button {
   text-align: center;
 }
 
+
 #resultText {
-  font-size: 1.5em;   /* 跟 h2 一樣大 */
+  font-size: 1.5em;   
   font-weight: bold;
 }
 
 #explanationText {
-  font-size: 1.8em; /* 說明稍微小一點 */
+  font-size: 1.8em; 
 }
 
 .hidden {
