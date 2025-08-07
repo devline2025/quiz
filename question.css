@@ -30,7 +30,7 @@ button {
 .modal {
   width: 90%;   
   margin: 20px auto;  
-  background-color: rgba(60, 60, 60, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   display: flex;
 }
 
@@ -38,9 +38,17 @@ button {
   background-color: white;
   width: 100%;  
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 28px;
   text-align: center;
-  font-size: 30px;
+}
+
+#resultText {
+  font-size: 1.5em;   /* 跟 h2 一樣大 */
+  font-weight: bold;
+}
+
+#explanationText {
+  font-size: 1.8em; /* 說明稍微小一點 */
 }
 
 .hidden {
