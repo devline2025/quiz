@@ -59,12 +59,12 @@ button {
 }
 
 #resultText {
-  font-size: 1.5em;   /* 跟 h2 一樣大 */
+  font-size: 40px;   /* 跟 h2 一樣大 */
   font-weight: bold;
 }
 
 #explanationText {
-  font-size: 1.5em; /* 說明稍微小一點 */
+  font-size: 40px; /* 說明稍微小一點 */
 }
 
 .hidden {
