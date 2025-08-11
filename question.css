@@ -17,7 +17,7 @@ body {
 
 .quiz-container h2, .quiz-container label{
   font-size: 32px;
-  line-height: 50px;
+  line-height: 2;
 }
 
 button {
