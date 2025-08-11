@@ -7,7 +7,8 @@ body {
 }
 
 .quiz-container {
-  width: 80%;    
+  width: 80%;   
+  height: 80%;
   background-color: #FDF6F0;
   border-radius: 20px;
   padding: 20px;
@@ -15,13 +16,18 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.quiz-container h2, .quiz-container label{
-  font-size: 32px;
-  line-height: 2;
+.quiz-container h2{
+  font-size: 40px;
+  line-height: 4;
+}
+
+.quiz-container label{
+  font-size: 40px;
+  line-height: 2; 
 }
 
 button {
-  margin-top: 40px;
+  margin-top: 60px;
   padding: 8px 16px;
   background-color: #f9bd64;
   color: white;
@@ -32,15 +38,18 @@ button {
 }
 
 .modal {
-  width: 80%;   
-  margin: 20px auto;  
-  background-color: rgba(255, 255, 255, 0);
-  display: flex;
+  position: fixed;          /* 讓遮罩固定覆蓋整個視窗 */
+  inset: 0;                 /* 等同 top:0; right:0; bottom:0; left:0 */
+  background: rgba(0,0,0,0.5);  /* 灰色半透明背景 */
+  display: flex;            /* 用 flex 做置中 */
+  align-items: center;
+  justify-content: center;
+  z-index: 999;             /* 蓋過其他內容 */
 }
 
 .modal-content {
   background-color: white;
-  width: 100%;  
+  width: 80%;  
   padding: 20px;
   border-radius: 28px;
   text-align: center;
