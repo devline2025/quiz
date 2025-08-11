@@ -18,23 +18,25 @@ body {
 
 .quiz-container h2{
   font-size: 40px;
-  line-height: 4;
+  line-height: 2;
+  padding: 40px;
 }
 
 .quiz-container label{
   font-size: 40px;
   line-height: 2; 
+  padding: 40px;
 }
 
 button {
   margin-top: 60px;
-  padding: 8px 16px;
+  padding: 16px 32px;
   background-color: #f9bd64;
   color: white;
   border: none;
   border-radius: 8px;
   font-weight: bold;
-  font-size: 27px
+  font-size: 30px
 }
 
 .modal {
