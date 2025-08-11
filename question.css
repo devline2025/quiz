@@ -8,10 +8,11 @@ body {
 }
 
 .quiz-container {
-  width: 90%;    
+  width: 80%;    
   background-color: #FDF6F0;
   border-radius: 10px;
   font-size: 32px;
+  line-height: 40px;
   padding: 20px;
   margin: auto;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -29,9 +30,9 @@ button {
 }
 
 .modal {
-  width: 90%;   
+  width: 80%;   
   margin: 20px auto;  
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0);
   display: flex;
 }
 
