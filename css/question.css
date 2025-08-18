@@ -75,7 +75,9 @@ button {
 
 /* 進度條容器（固定在底部） */
 .progress-wrap{
-  position: fixed; left: 10%; right: 10%; bottom: 5%;
+  position: relative;   /* 或直接刪掉 position */
+  margin: 20px auto;    /* 與上方容器的距離 */
+  width: 80%;           /* 可以自己調整寬度 */
   background: #fff;
   height: 40px;
   width: 80%;
@@ -89,7 +91,7 @@ button {
 /* 軌道與條 */
 .progress-track{
   flex: 1; 
-  height: 80%; 
+  height: 65%; 
   width: 80%;
   background: #eee;
   border-radius: 999px; 
@@ -104,9 +106,6 @@ button {
 
 /* 文字 */
 .progress-text{
-  min-width: 120px;
-  text-align: right;
-  font-weight: 600;
-  font-size: 20px; 
-  color: #333;
+  min-width: 120px; text-align: right;
+  font-weight: 600; font-size: 20px; color: #333;
 }
