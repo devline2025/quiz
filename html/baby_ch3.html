@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <title>寶寶補鐵小測驗</title>
-  <link rel="stylesheet" href="../question.css" />
+  <link rel="stylesheet" href="../css/question.css" />
 </head>
 <body>
   <div class="quiz-container" id="quiz-container"></div>
+  
+  <div class="progress-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <div class="progress-track">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="progress-text" id="progressText">0 / 0（0%）</div>
+  </div>
 
   <!-- 答案結果 Modal -->
   <div id="resultModal" class="modal hidden">
@@ -17,6 +24,7 @@
     </div>
   </div>
 
-  <script src="../question.js"></script>
+
+  <script src="../javascript/question.js"></script>
 </body>
 </html>

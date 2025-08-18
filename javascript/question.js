@@ -2,7 +2,7 @@
 const currentPage = window.location.pathname.split("/").pop();
 const jsonFilename = currentPage.replace(".html", ".json");
 
-fetch(jsonFilename)
+fetch(`../data/${jsonFilename}`)
   .then((res) => res.json())
   .then((data) => {
     const quizContainer = document.getElementById("quiz-container");
@@ -13,7 +13,25 @@ fetch(jsonFilename)
     const knowledge = data.knowledge || [];
     const attitude  = data.attitude  || [];
 
-    // 狀態
+    
+    // === Progress Bar State ===
+    const progressBar  = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    const totalQuestions = knowledge.length + attitude.length;
+    let answeredCount = 0;              // cleared questions count
+    const clearedKnowledge = new Set(); // IDs of knowledge questions cleared (answered correctly at least once)
+    let lastCleared = false;            // whether the last submission cleared a knowledge question
+    let lastAttitudeAnswered = false;   // whether the last submission answered an attitude question
+
+    function updateProgress(done, total){
+      const pct = total ? Math.round((done/total)*100) : 0;
+      if (progressBar) progressBar.style.width = pct + '%';
+      const wrap = document.querySelector('.progress-wrap');
+      if (wrap) wrap.setAttribute('aria-valuenow', pct);
+      if (progressText) progressText.textContent = `${done} / ${total}（${pct}%）`;
+    }
+    updateProgress(0, totalQuestions);
+// 狀態
     let mode = "knowledge_initial"; // knowledge_initial → knowledge_review → attitude
     let kIndex = 0;                 // 知識題目前索引（第一輪）
     let aIndex = 0;                 // 態度題目前索引
@@ -77,6 +95,7 @@ fetch(jsonFilename)
           return;
         }
         // 全部完成
+        updateProgress(totalQuestions, totalQuestions);
         quizContainer.innerHTML = "<h2>🎉 小測驗完成，感謝您的作答！</h2>";
       }
     }
@@ -89,6 +108,10 @@ fetch(jsonFilename)
     }
 
     window.checkAnswer = function () {
+      
+      // progress flags reset
+      lastCleared = false;
+      lastAttitudeAnswered = false;
       const selected = document.querySelector('input[name="option"]:checked');
       if (!selected) return;
 
@@ -108,6 +131,11 @@ fetch(jsonFilename)
       if (q.type === "knowledge") {
         if (userAnswer === q.correct) {
           resultText.textContent = "✅ 答對了！";
+          // progress: mark cleared if first time
+          if (!clearedKnowledge.has(q.id)) {
+            clearedKnowledge.add(q.id);
+            lastCleared = true;
+          }
           explanationText.textContent = q.feedback.correct;
 
           // 如果在複習階段答對，從佇列移除；在第一輪就對則不用進佇列
@@ -126,6 +154,8 @@ fetch(jsonFilename)
         const agreeOptions = ["同意", "非常同意"];
         const isAgree = agreeOptions.includes(userAnswer);
         resultText.textContent = "📝 回饋";
+        // progress: attitude question counts once per submission
+        lastAttitudeAnswered = true;
         explanationText.textContent = isAgree ? q.feedback.agree : q.feedback.disagree;
       }
 
@@ -133,7 +163,14 @@ fetch(jsonFilename)
     };
 
     window.closeModal = function () {
-      resultModal.classList.add("hidden");
+      
+      // progress: if a knowledge question was cleared just now
+      if (lastCleared) {
+        answeredCount = Math.min(answeredCount + 1, totalQuestions);
+        updateProgress(answeredCount, totalQuestions);
+        lastCleared = false;
+      }
+resultModal.classList.add("hidden");
 
       // 移動指標／佇列
       if (mode === "knowledge_initial") {
@@ -142,6 +179,12 @@ fetch(jsonFilename)
         // 若上一題答對已從隊首移除，這裡不需要再動作；
         // 若答錯仍在隊首，下一次仍會出現相同題直到答對。
       } else if (mode === "attitude") {
+        // progress: attitude question answered
+        if (lastAttitudeAnswered) {
+          answeredCount = Math.min(answeredCount + 1, totalQuestions);
+          updateProgress(answeredCount, totalQuestions);
+          lastAttitudeAnswered = false;
+        }
         aIndex += 1;
       }
 
