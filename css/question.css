@@ -78,7 +78,7 @@ button {
   position: relative;   /* 或直接刪掉 position */
   margin: 20px auto;    /* 與上方容器的距離 */
   width: 80%;           /* 可以自己調整寬度 */
-  background: #fff;
+  background: #FDF6F0;
   height: 40px;
   width: 80%;
   padding: 8px 16px calc(8px + env(safe-area-inset-bottom));
