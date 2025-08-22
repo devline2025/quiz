@@ -2,7 +2,7 @@
   "knowledge": [
     {
       "id": "k_q1",
-      "question": "• 哪個營養素缺乏會導致寶寶貧血？",
+      "question": "哪個營養素缺乏會導致寶寶貧血？",
       "options": ["維生素A", "維生素D", "鐵"],
       "correct": "鐵",
       "feedback": {
