@@ -49,7 +49,7 @@ fetch(`../data/${jsonFilename}`)
       `).join("");
 
       quizContainer.innerHTML = `
-        <h2>${questionText}</h2>
+        <h2>• ${questionText}</h2>
         <form id="${q.id}">
           ${optionsHTML}
           <button type="button" onclick="checkAnswer()">提交</button>
@@ -113,7 +113,10 @@ fetch(`../data/${jsonFilename}`)
       lastCleared = false;
       lastAttitudeAnswered = false;
       const selected = document.querySelector('input[name="option"]:checked');
-      if (!selected) return;
+      if (!selected) {
+        alert("請先選擇一個答案！");
+        return;
+      }
 
       const userAnswer = selected.value;
 

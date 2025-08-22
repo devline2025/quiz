@@ -1,102 +1,114 @@
-body {
-  font-family: "微軟正黑體", sans-serif;
-  background-color: #FFE4D6;
-  padding: 20px;
-  align-items: center;         /* items-center */
-  justify-content: center;     /* justify-center */
-  padding-bottom: 72px;
+.quiz-outer{
+  width: 90%;   
+  height: 82%;
+  background-color: #f8d1ab;
+  border-radius: 20px;
+  margin: 1rem auto auto;
+  box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.2);
+  display: flex;             
+  justify-content: center;    
+  align-items: center;       
 }
 
 .quiz-container {
-  width: 80%;   
-  height: 80%;
-  background-color: #FDF6F0;
+  width: 94%;   
+  height: 96%;
+  position: relative;
+  background-color: #ffffff;
   border-radius: 20px;
-  padding: 20px;
-  margin: auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: .3rem;
+  z-index: 880;
 }
 
 .quiz-container h2{
-  font-size: 40px;
+  font-size: 1.3rem;
   line-height: 2;
   padding: 40px;
 }
 
 .quiz-container label{
-  font-size: 40px;
+  font-size: 1.3rem;
   line-height: 2; 
   padding: 40px;
 }
 
-button {
-  margin-top: 60px;
-  padding: 16px 32px;
+button, .next-botton{
+  display: block;
+  position: absolute;
+  left: 50%;          
+  transform: translateX(-50%);
+  bottom: 10rem;
+  padding: .3rem 3rem;
   background-color: #f9bd64;
   color: white;
   border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 30px
+  border-radius: 2rem;
+  font-size: 1rem;
+}
+
+.next-botton{
+  bottom: 6rem;
 }
 
 .modal {
-  position: fixed;          /* 讓遮罩固定覆蓋整個視窗 */
-  inset: 0;                 /* 等同 top:0; right:0; bottom:0; left:0 */
-  background: rgba(0,0,0,0.5);  /* 灰色半透明背景 */
-  display: flex;            /* 用 flex 做置中 */
+  position: absolute; 
+  display: flex;
+  top: 8%; 
+  height: 92%; 
+  background: rgba(0,0,0,0.5); 
   align-items: center;
   justify-content: center;
-  z-index: 999;             /* 蓋過其他內容 */
+  z-index: 900;             /* 蓋過其他內容 */
 }
 
-.modal-content {
+.result-box {
   background-color: white;
-  width: 80%;  
-  padding: 40px;
-  font-size: 40px;
+  width: 80%;
+  height: 70%;
+  padding: 1.7rem;
   border-radius: 28px;
   text-align: center;
+  position: relative;
 }
 
 #resultText {
-  font-size: 40px;   /* 跟 h2 一樣大 */
-  font-weight: bold;
+  margin-top: 2rem;
+  font-size: 1.3rem;  
 }
 
 #explanationText {
-  font-size: 40px; /* 說明稍微小一點 */
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-size: 1.3rem; 
 }
 
 .hidden {
   display: none;
 }
 
-
-/* 進度條容器（固定在底部） */
 .progress-wrap{
-  position: relative;   /* 或直接刪掉 position */
-  margin: 20px auto;    /* 與上方容器的距離 */
-  width: 80%;           /* 可以自己調整寬度 */
-  background: #FDF6F0;
-  height: 40px;
-  width: 80%;
-  padding: 8px 16px calc(8px + env(safe-area-inset-bottom));
-  box-shadow: 0 -2px 8px rgba(0,0,0,.08);
-  display: flex; align-items: center; gap: 12px;
+  margin: 1rem auto;   
+  width: 90%;   
+  height: 4%;  
+  padding: .3rem .5rem;      
+  background: #f8ebe0;
+  box-shadow: 5px 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex; 
+  align-items: center; 
+  gap: 12px;
   z-index: 900;
   border-radius: 20px;
 }
 
-/* 軌道與條 */
 .progress-track{
   flex: 1; 
   height: 65%; 
   width: 80%;
   background: #eee;
+  margin-left: .5rem;
   border-radius: 999px; 
-  overflow: hidden;
 }
+
 .progress-bar{
   height: 100%; 
   width: 0%;
@@ -104,8 +116,8 @@ button {
   transition: width .25s ease;
 }
 
-/* 文字 */
 .progress-text{
-  min-width: 120px; text-align: right;
-  font-weight: 600; font-size: 20px; color: #333;
+  text-align: right;
+  font-size: .8rem; 
+  color: #333;
 }
