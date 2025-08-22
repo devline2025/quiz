@@ -52,7 +52,7 @@ fetch(`../data/${jsonFilename}`)
         <h2>• ${questionText}</h2>
         <form id="${q.id}">
           ${optionsHTML}
-          <button type="button" onclick="checkAnswer()">提交</button>
+          <button type="button" class="question-botton" onclick="checkAnswer()">提交</button>
         </form>
       `;
     }
