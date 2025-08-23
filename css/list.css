@@ -6,14 +6,14 @@
   margin-top: 1rem; 
 }
 
-.botton-one, .botton-two, .botton-three{
+.botton-one, .botton-two{
   display: block;
   margin: 0 2.2rem 1rem;
   border-radius: 5rem;
   box-shadow: 
     8px 8px 20px #c1bfbf,
     -8px -8px 30px #ffffff; 
-  font-weight: 350;
+  font-weight: 400;
   font-size: 1.2rem;
   text-align: center;
   padding: 3rem 1rem; 
@@ -22,7 +22,7 @@
   border: none;
 }
 
-.botton-one:hover, .botton-two:hover, .botton-three:hover{
+.botton-one:hover{
   opacity: 0.9;
   transform: translateY(-4px);  /* 漂浮效果 */
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);  /* 加強陰影 */
@@ -30,12 +30,4 @@
 
 .botton-one{
   background-color: #FFD6C2;        
-}
-
-.botton-two{
-  background-color: #ffbfb1; 
-}
-
-.botton-three{
-  background-color: #ffae9d; 
 }
