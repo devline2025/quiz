@@ -45,7 +45,9 @@ fetch(`../data/${jsonFilename}`)
       const questionText = isKnowledge ? q.question : q.statement;
 
       const optionsHTML = q.options.map(opt => `
-        <label><input type="radio" name="option" value="${opt}"> ${opt}</label><br>
+        <label>
+          <input type="radio" name="option" value="${opt}"> ${opt}
+        </label><br>
       `).join("");
 
       quizContainer.innerHTML = `

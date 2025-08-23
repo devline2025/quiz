@@ -37,7 +37,7 @@
   position: absolute;
   left: 50%;          
   transform: translateX(-50%);
-  bottom: 10rem;
+  bottom: 6rem;
   padding: .3rem 3rem;
   background-color: #f9bd64;
   color: white;
@@ -47,7 +47,7 @@
 }
 
 .next-botton{
-  bottom: 6rem;
+  bottom: 5rem;
 }
 
 .modal {
