@@ -6,7 +6,7 @@
   margin-top: 1rem; 
 }
 
-.botton-one, .botton-two{
+.botton-one, .botton-two, .botton-three{
   display: block;
   margin: 0 2.2rem 1rem;
   border-radius: 5rem;
@@ -22,7 +22,7 @@
   border: none;
 }
 
-.botton-one:hover{
+.botton-one:hover, .botton-two:hover, .botton-three:hover{
   opacity: 0.9;
   transform: translateY(-4px);  /* 漂浮效果 */
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);  /* 加強陰影 */
@@ -30,4 +30,12 @@
 
 .botton-one{
   background-color: #FFD6C2;        
+}
+
+.botton-two{
+  background-color: #fecaca;        
+}
+
+.botton-three{
+  background-color: #fdbebe;        
 }
