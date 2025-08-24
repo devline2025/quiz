@@ -42,7 +42,7 @@ fetch(`../data/${jsonFilename}`)
 
     function renderQuestion(q) {
       const isKnowledge = q.type === "knowledge";
-      const questionText = renderTextWithLineBreaks(isKnowledge ? q.question : q.statement);
+      const questionText = isKnowledge ? q.question : q.statement;
 
       const optionsHTML = q.options.map(opt => `
         <label>
