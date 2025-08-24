@@ -42,16 +42,17 @@ fetch(`../data/${jsonFilename}`)
 
     function renderQuestion(q) {
       const isKnowledge = q.type === "knowledge";
-      const questionText = isKnowledge ? q.question : q.statement;
+      const questionText = renderTextWithLineBreaks(isKnowledge ? q.question : q.statement);
 
       const optionsHTML = q.options.map(opt => `
         <label>
-          <input type="radio" name="option" value="${opt}"> ${opt}
+          <input type="radio" name="option" value="${opt}"> 
+            <span>${opt}</span>
         </label><br>
       `).join("");
 
       quizContainer.innerHTML = `
-        <h2>• ${questionText}</h2>
+        <h2>${questionText}</h2>
         <form id="${q.id}">
           ${optionsHTML}
           <button type="button" class="question-botton" onclick="checkAnswer()">提交</button>
@@ -108,6 +109,12 @@ fetch(`../data/${jsonFilename}`)
         wrongQueue.push(q);
       }
     }
+
+    function renderTextWithLineBreaks(text) {
+      if (!text) return "";
+      return text.replace(/\n/g, "<br>");
+    }
+
 
     window.checkAnswer = function () {
       
