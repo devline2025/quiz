@@ -8,18 +8,16 @@
   justify-content: space-between;
   position: sticky;
   display:flex;
+  justify-content: space-between;
   top: 0;
   z-index: 1000;
 }
 
 .title{
   height: 90%;
-  margin-left: 30%;
-}
-
-.title-list{
-  height: 90%;
-  margin-left: 7%;
+  position: absolute;
+  left: 50%;                
+  transform: translateX(-50%); 
 }
 
 .back-botton, .home-botton{

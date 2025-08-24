@@ -25,7 +25,8 @@
   display: block;
   font-size: 1.3rem;
   padding: 30px;
-  margin-left: 18px;
+  left: 50%;
+  transform: translateX(-44%);
 }
 
 .quiz-container h2::before {
