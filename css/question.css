@@ -16,7 +16,7 @@
   position: relative;
   background-color: #ffffff;
   border-radius: 20px;
-  padding: .2rem;
+  padding: 3%;
   z-index: 880;
 }
 
@@ -55,22 +55,18 @@
   margin-top: 0px;
 }
 
-.question-botton, .next-botton{
+.question-botton{
   display: block;
   position: absolute;
   left: 50%;          
   transform: translateX(-50%);
-  bottom: 6rem;
+  top: 80%;
   padding: .3rem 3rem;
   background-color: #f9bd64;
   color: white;
   border: none;
   border-radius: 2rem;
   font-size: 1rem;
-}
-
-.next-botton{
-  bottom: 5rem;
 }
 
 .modal {
@@ -89,21 +85,38 @@
   background-color: white;
   width: 80%;
   height: 70%;
-  padding: 1.7rem;
   border-radius: 28px;
   text-align: center;
   position: relative;
+  flex-direction: column;
+  align-items: center;      
+  display: flex;
 }
 
 #resultText {
-  margin-top: 2rem;
+  position: absolute;
+  top: 10%;
   font-size: 1.3rem;  
 }
 
 #explanationText {
-  margin-top: 3rem;
-  margin-bottom: 1rem;
+  display: inline-block;
+  margin: auto 8%;
+  position: absolute;
+  top: 30%;
   font-size: 1.3rem; 
+}
+
+.next-botton{
+  display: block;
+  position: absolute;
+  top: 80%;
+  padding: .3rem 3rem;
+  background-color: #f9bd64;
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
 }
 
 .hidden {
