@@ -159,3 +159,15 @@
   color: #333;
 }
 
+.finish-box {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.finish-link {
+  display: inline-block;
+  color: #f69d71;
+  font-weight: 600;
+  text-decoration: underline;
+  margin-top: 1rem;
+}

@@ -51,7 +51,7 @@ fetch(`../data/${jsonFilename}`)
         </label><br>
       `).join("");
 
-      quizContainer.innerHTML = `
+      document.getElementById("quiz-questions").innerHTML = `
         <h2>${questionText}</h2>
         <form id="${q.id}">
           ${optionsHTML}
@@ -59,6 +59,7 @@ fetch(`../data/${jsonFilename}`)
         </form>
       `;
     }
+
 
     function showNext() {
       if (mode === "knowledge_initial") {
@@ -97,9 +98,10 @@ fetch(`../data/${jsonFilename}`)
           renderQuestion(q);
           return;
         }
-        // 全部完成
+
         updateProgress(totalQuestions, totalQuestions);
-        quizContainer.innerHTML = "<h2>🎉 小測驗完成，感謝您的作答！</h2>";
+        document.getElementById("quiz-questions").innerHTML = ""; // 清空題目
+        document.getElementById("quiz-finish").classList.remove("hidden");
       }
     }
 
