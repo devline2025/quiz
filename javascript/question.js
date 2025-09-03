@@ -1,3 +1,13 @@
+// === user_id：固定不變 ===
+let userId = localStorage.getItem("userId");
+if (!userId) {
+  userId = Date.now(); 
+  localStorage.setItem("userId", userId);
+}
+
+// === session_id：每次測驗不同 ===
+const sessionId = Date.now(); 
+
 // 依當前 html 檔名推測 json
 const currentPage = window.location.pathname.split("/").pop();
 const jsonFilename = currentPage.replace(".html", ".json");
@@ -13,15 +23,14 @@ fetch(`../data/${jsonFilename}`)
     const knowledge = data.knowledge || [];
     const attitude  = data.attitude  || [];
 
-    
     // === Progress Bar State ===
     const progressBar  = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
     const totalQuestions = knowledge.length + attitude.length;
-    let answeredCount = 0;              // cleared questions count
-    const clearedKnowledge = new Set(); // IDs of knowledge questions cleared (answered correctly at least once)
-    let lastCleared = false;            // whether the last submission cleared a knowledge question
-    let lastAttitudeAnswered = false;   // whether the last submission answered an attitude question
+    let answeredCount = 0;              
+    const clearedKnowledge = new Set(); 
+    let lastCleared = false;            
+    let lastAttitudeAnswered = false;   
 
     function updateProgress(done, total){
       const pct = total ? Math.round((done/total)*100) : 0;
@@ -31,12 +40,13 @@ fetch(`../data/${jsonFilename}`)
       if (progressText) progressText.textContent = `${done} / ${total}（${pct}%）`;
     }
     updateProgress(0, totalQuestions);
-// 狀態
-    let mode = "knowledge_initial"; // knowledge_initial → knowledge_review → attitude
-    let kIndex = 0;                 // 知識題目前索引（第一輪）
-    let aIndex = 0;                 // 態度題目前索引
 
-    // 錯題佇列（FIFO）與集合避免重複排隊
+    // 狀態
+    let mode = "knowledge_initial"; 
+    let kIndex = 0;                 
+    let aIndex = 0;                 
+
+    // 錯題佇列（FIFO）
     const wrongQueue = [];
     const wrongSet = new Set();
 
@@ -60,7 +70,6 @@ fetch(`../data/${jsonFilename}`)
       `;
     }
 
-
     function showNext() {
       if (mode === "knowledge_initial") {
         if (kIndex < knowledge.length) {
@@ -68,13 +77,11 @@ fetch(`../data/${jsonFilename}`)
           renderQuestion(q);
           return;
         }
-        // 第一輪知識題結束，決定是否進入複習
         if (wrongQueue.length > 0) {
           mode = "knowledge_review";
           showNext();
           return;
         }
-        // 沒有錯題就進態度題
         mode = "attitude";
         showNext();
         return;
@@ -82,11 +89,10 @@ fetch(`../data/${jsonFilename}`)
 
       if (mode === "knowledge_review") {
         if (wrongQueue.length > 0) {
-          const q = wrongQueue[0]; // 取隊首
+          const q = wrongQueue[0];
           renderQuestion(q);
           return;
         }
-        // 錯題清空後，進入態度題
         mode = "attitude";
         showNext();
         return;
@@ -100,7 +106,7 @@ fetch(`../data/${jsonFilename}`)
         }
 
         updateProgress(totalQuestions, totalQuestions);
-        document.getElementById("quiz-questions").innerHTML = ""; // 清空題目
+        document.getElementById("quiz-questions").innerHTML = "";
         document.getElementById("quiz-finish").classList.remove("hidden");
       }
     }
@@ -117,12 +123,36 @@ fetch(`../data/${jsonFilename}`)
       return text.replace(/\n/g, "<br>");
     }
 
+    // === 新增：送答題紀錄到後端 ===
+    function sendAnswer(q, userAnswer, isCorrect) {
+      fetch("http://localhost:3000/answers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": "3jnDfg4nw0wSDkb4295NBJkdwhuf378S" // 你的 API key
+        },
+        body: JSON.stringify({
+          user_id: userId,
+          session_id: sessionId,
+          question_id: q.id,
+          selected_option: userAnswer,
+          is_correct: isCorrect
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log("✅ 已存進資料庫:", data);
+      })
+      .catch(err => {
+        console.error("❌ 存資料失敗:", err);
+      });
+    }
 
+    // === checkAnswer ===
     window.checkAnswer = function () {
-      
-      // progress flags reset
       lastCleared = false;
       lastAttitudeAnswered = false;
+
       const selected = document.querySelector('input[name="option"]:checked');
       if (!selected) {
         alert("請先選擇一個答案！");
@@ -130,8 +160,8 @@ fetch(`../data/${jsonFilename}`)
       }
 
       const userAnswer = selected.value;
+      let isCorrect = null;   // 預設 null
 
-      // 依 mode 找到目前題目
       let q;
       if (mode === "knowledge_initial") {
         q = { ...knowledge[kIndex], type: "knowledge" };
@@ -141,59 +171,54 @@ fetch(`../data/${jsonFilename}`)
         q = { ...attitude[aIndex], type: "attitude" };
       }
 
-      // 判題 + 回饋
       if (q.type === "knowledge") {
         if (userAnswer === q.correct) {
           resultText.textContent = "✅ 答對了！";
-          // progress: mark cleared if first time
+          isCorrect = true;
           if (!clearedKnowledge.has(q.id)) {
             clearedKnowledge.add(q.id);
             lastCleared = true;
           }
           explanationText.textContent = q.feedback.correct;
 
-          // 如果在複習階段答對，從佇列移除；在第一輪就對則不用進佇列
           if (mode === "knowledge_review") {
             wrongSet.delete(q.id);
             wrongQueue.shift();
           }
         } else {
           resultText.textContent = "❌ 錯了唷～";
+          isCorrect = false;
           explanationText.textContent = q.feedback.incorrect;
-
-          // 第一輪或複習只要答錯就（再次）確保在佇列中
           enqueueWrong(q);
         }
       } else {
         const agreeOptions = ["同意", "非常同意"];
         const isAgree = agreeOptions.includes(userAnswer);
         resultText.textContent = "📝 回饋";
-        // progress: attitude question counts once per submission
         lastAttitudeAnswered = true;
         explanationText.textContent = isAgree ? q.feedback.agree : q.feedback.disagree;
+        isCorrect = null; // 態度題沒有正確性
       }
+
+      // ✅ 這裡送答題紀錄
+      sendAnswer(q, userAnswer, isCorrect);
 
       resultModal.classList.remove("hidden");
     };
 
+    // === closeModal ===
     window.closeModal = function () {
-      
-      // progress: if a knowledge question was cleared just now
       if (lastCleared) {
         answeredCount = Math.min(answeredCount + 1, totalQuestions);
         updateProgress(answeredCount, totalQuestions);
         lastCleared = false;
       }
-resultModal.classList.add("hidden");
 
-      // 移動指標／佇列
+      resultModal.classList.add("hidden");
+
       if (mode === "knowledge_initial") {
         kIndex += 1;
-      } else if (mode === "knowledge_review") {
-        // 若上一題答對已從隊首移除，這裡不需要再動作；
-        // 若答錯仍在隊首，下一次仍會出現相同題直到答對。
       } else if (mode === "attitude") {
-        // progress: attitude question answered
         if (lastAttitudeAnswered) {
           answeredCount = Math.min(answeredCount + 1, totalQuestions);
           updateProgress(answeredCount, totalQuestions);
