@@ -125,7 +125,7 @@ fetch(`../data/${jsonFilename}`)
 
     // === 新增：送答題紀錄到後端 ===
     function sendAnswer(q, userAnswer, isCorrect) {
-      fetch("http://localhost:3000/answers", {
+      fetch("https://quiz-backend-02dc.onrender.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
