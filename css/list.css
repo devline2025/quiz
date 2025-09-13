@@ -1,0 +1,41 @@
+.heading{
+  font-size: 1.5rem;     
+  font-weight: 450;  
+  text-align: center;   
+  margin-bottom: 1rem; 
+  margin-top: 1rem; 
+}
+
+.botton-one, .botton-two, .botton-three{
+  display: block;
+  margin: 0 2.2rem 1rem;
+  border-radius: 5rem;
+  box-shadow: 
+    8px 8px 20px #c1bfbf,
+    -8px -8px 30px #ffffff; 
+  font-weight: 400;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 3rem 1rem; 
+  width: 80%;
+  transition: all 0.1s ease;
+  border: none;
+}
+
+.botton-one:hover, .botton-two:hover, .botton-three:hover{
+  opacity: 0.9;
+  transform: translateY(-4px);  /* 漂浮效果 */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);  /* 加強陰影 */
+}
+
+.botton-one{
+  background-color: #FFD6C2;        
+}
+
+.botton-two{
+  background-color: #fecaca;        
+}
+
+.botton-three{
+  background-color: #fdbebe;        
+}

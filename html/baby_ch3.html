@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>小測驗</title>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SX050QYR79"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-SX050QYR79');
+  </script>
+  
+  <link rel="stylesheet" href="../css/head.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/question.css">
+  <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <div class="content-box">
+
+    <input type="checkbox" id="toggler" hidden>
+    <label for="toggler">
+      <div class="head-div">
+        <a href="#" onclick="goBack()" class="back-botton">
+          <img src="../src/arrow_back.png">
+        </a>
+        <a href="../index.html" class="home-botton">
+          <img src="../src/home.png">
+        </a>
+        <img src="../src/title.jpg" class="title">
+        <div class="menu-container">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </label>
+
+    <div class="menu-overlay"></div>
+    <div class="menu-items">
+      <ul>
+        <li>孕媽咪測測看</li>
+        <ul>
+          <li><a href="./pregnant_ch2.html">為什麼孕期容易缺鐵？<br>貧血風險與影響</a></li>
+          <li><a href="./pregnant_ch3.html">鐵的來源：<br>食物來源與影響吸收食物</a></li>          
+        </ul>
+        <li>嬰幼兒家長測測看</li>
+        <ul>
+          <li><a href="./baby_ch2.html"></a>寶寶的鐵健康任務：<br>認識貧血風險與健康影響</li>
+          <li><a href="./baby_ch3.html">從第一口開始：含鐵副食品餵食<br>與親子健康行為指南</a></li>          
+        </ul>
+      </ul>
+    </div>
+    
+    <div class="quiz-outer">
+      <div class="quiz-container" id="quiz-container">
+        <div id="quiz-questions"></div>
+        <div id="quiz-finish" class="hidden finish-box">
+          <h3>小測驗完成，感謝您的作答！</h3>
+          <p>
+            <a href="https://devline2025.github.io/anemia-in-baby/" class="finish-link">
+              👉 點我複習嬰幼兒貧血小知識
+            </a>
+          </p>
+        </div>  
+      </div>
+    </div>
+
+    <div class="progress-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="progress-track">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="progress-text" id="progressText">0/0(0%)</div>
+    </div>
+
+    <div id="resultModal" class="modal hidden">
+      <div class="result-box">
+        <p id="resultText"></p>
+        <p id="explanationText"></p>
+        <button onclick="closeModal()" class="next-botton">下一題</button>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../javascript/question.js"></script>
+<script src="../javascript/go_back.js"></script>
+</html>

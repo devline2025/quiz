@@ -1,0 +1,115 @@
+.head-div{
+  height: 8%;
+  width: 100%; 
+  background-color: #ffffff;
+  border-bottom: 1px solid #ccc;
+  flex-direction: row;  
+  align-items: center; 
+  justify-content: space-between;
+  position: sticky;
+  display:flex;
+  justify-content: space-between;
+  top: 0;
+  z-index: 1000;
+}
+
+.title{
+  height: 90%;
+  position: absolute;
+  left: 50%;                
+  transform: translateX(-50%); 
+}
+
+.back-botton, .home-botton{
+  display: block;
+  height: 80%;
+  aspect-ratio: 1 / 1; 
+  border-radius: 50%; 
+  background: #ffffff; 
+  transition: all 0.2s ease;
+}
+
+.menu-container{
+  display: block;
+  margin: auto;
+  position: relative;
+  margin-right: 10px;
+  background-color: #ffffff;
+  width: 40px;              
+  height: 40px; 
+}
+
+.menu-container span{
+  position: absolute;
+  top: 10px;
+  height: .1rem;
+  width: 2rem;
+  background-color: #A96424;
+  transition: all .2s ease-in-out;
+}
+
+.menu-container span:nth-child(2){
+  top: 20px;
+}
+
+.menu-container span:nth-child(3){
+  top: 30px;
+}
+
+#toggler:checked + label .menu-container span:nth-child(1){
+  transform: rotate(45deg);
+  top: 20px;
+}
+
+#toggler:checked + label .menu-container span:nth-child(2){
+  opacity: 0;
+}
+
+#toggler:checked + label .menu-container span:nth-child(3){
+  transform: rotate(-45deg);
+  top: 20px;
+}
+
+.menu-items{
+  background-color: rgba(255, 214, 194, 0.8);
+  width: 70%;
+  height: 100%;
+  right: 0;
+  position: absolute;
+  transform: scaleX(0);
+  transition: all .3s ease-in-out;
+  transform-origin: 100% 50%;
+  z-index: 999;
+}
+
+#toggler:checked ~ .menu-items{
+  transform: scaleX(1);
+}
+
+.menu-overlay{
+  background-color: #ccc;
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  position: absolute;
+  z-index: 900;
+}
+
+#toggler:checked ~ .menu-overlay{
+  transform: scaleX(1);
+  opacity: .7;
+}
+
+.menu-items ul li{
+  font-size: 1.2rem;
+  font-weight: 400;  
+  text-align: right;
+  margin: .3rem 1rem;
+}
+
+.menu-items ul ul li{
+  font-size: 1rem;
+  text-decoration: underline;
+  text-align: right;
+  color: #794617;
+}

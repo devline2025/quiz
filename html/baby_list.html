@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>小測驗</title>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SX050QYR79"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-SX050QYR79');
+  </script>
+  
+  <link rel="stylesheet" href="../css/list.css">
+  <link rel="stylesheet" href="../css/head.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+  <div class="content-box">
+
+    <input type="checkbox" id="toggler" hidden>
+    <label for="toggler">
+      <div class="head-div">
+        <a href="#" onclick="goBack()" class="back-botton">
+          <img src="../src/arrow_back.png">
+        </a>
+        <a href="../index.html" class="home-botton">
+          <img src="../src/home.png">
+        </a>
+        <img src="../src/title.jpg" class="title">
+        <div class="menu-container">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </label>
+
+    <div class="menu-overlay"></div>
+    <div class="menu-items">
+      <ul>
+        <li>孕媽咪測測看</li>
+        <ul>
+          <li><a href="./html/pregnant_ch2.html">為什麼孕期容易缺鐵？<br>貧血風險與影響</a></li>
+          <li><a href="./html/pregnant_ch3.html">鐵的來源：<br>食物來源與影響吸收食物</a></li>          
+        </ul>
+        <li>嬰幼兒家長測測看</li>
+        <ul>
+          <li><a href="./html/baby_ch2.html"></a>寶寶的鐵健康任務：<br>認識貧血風險與健康影響</li>
+          <li><a href="./html/baby_ch3.html">從第一口開始：含鐵副食品餵食<br>與親子健康行為指南</a></li>          
+        </ul>
+      </ul>
+    </div>
+
+    <h1 class="heading">嬰幼兒家長測測看</h1>
+    <a href="./baby_ch2.html" class="botton-three">
+        寶寶的鐵健康任務：<br>認識貧血風險與健康影響
+    </a>
+    <a href="./baby_ch3.html" class="botton-three">
+        從第一口開始：含鐵副食品餵食<br>與親子健康行為指南
+    </a>
+    
+  </div>
+</body>
+<script src="../javascript/go_back.js"></script>
+
+</html>
