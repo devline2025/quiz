@@ -54,7 +54,7 @@
         </ul>
         <li>嬰幼兒家長測測看</li>
         <ul>
-          <li><a href="./baby_ch2.html"></a>寶寶的鐵健康任務：<br>認識貧血風險與健康影響</li>
+          <li><a href="./baby_ch2.html">寶寶的鐵健康任務：<br>認識貧血風險與健康影響</a></li>
           <li><a href="./baby_ch3.html">從第一口開始：含鐵副食品餵食<br>與親子健康行為指南</a></li>          
         </ul>
       </ul>
@@ -62,15 +62,26 @@
     
     <div class="quiz-outer">
       <div class="quiz-container" id="quiz-container">
-        <div id="quiz-questions"></div>
-        <div id="quiz-finish" class="hidden finish-box">
-          <h3>小測驗完成，感謝您的作答！</h3>
-          <p>
-            <a href="https://devline2025.github.io/anemia-in-baby/" class="finish-link">
-              👉 點我複習嬰幼兒貧血小知識
-            </a>
-          </p>
-        </div>  
+
+        <div id="userIdSection" class="quiz-container">
+          <h1 class="ask-id">請輸入您的收案編號，測驗結束後即可領取禮卷喔！(若無則填寫“無“)</h1>
+          <input type="text" id="userIdInput" placeholder="輸入收案編號">
+          <button id="startQuizBtn">
+            開始測驗
+          </button>
+        </div>
+
+        <div id="quizSection" class="hidden">   
+          <div id="quiz-questions"></div>
+          <div id="quiz-finish" class="hidden finish-box">
+            <h3>小測驗完成，感謝您的作答！</h3>
+            <p>
+              <a href="https://devline2025.github.io/anemia-in-baby/" class="finish-link">
+                👉 點我複習嬰幼兒貧血小知識
+              </a>
+            </p>
+          </div> 
+        </div> 
       </div>
     </div>
 
