@@ -27,7 +27,6 @@ startQuizBtn.addEventListener("click", () => {
 });
 
 
-
 // 依當前 html 檔名推測 json
 const currentPage = window.location.pathname.split("/").pop();
 const jsonFilename = currentPage.replace(".html", ".json");
@@ -90,6 +89,34 @@ fetch(`../data/${jsonFilename}`)
       `;
     }
 
+    // === 🎁 新增：領取禮卷 API ===
+    async function fetchVoucher(userId) {
+      try {
+        const response = await fetch("https://quiz-backend-02dc.onrender.com/getVoucher", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-api-key": "3jnDfg4nw0wSDkb4295NBJkdwhuf378S"
+          },
+          body: JSON.stringify({ user_id: userId })
+        });
+
+        const data = await response.json();
+        if (data.error) {
+          document.getElementById("voucherSection").innerHTML = `❌ ${data.error}`;
+        } else {
+          document.getElementById("voucherSection").innerHTML = `
+            🎉 恭喜獲得禮卷！<br>
+            <a href="${data.url}" target="_blank">👉 點我領取禮卷</a><br>
+            領取代碼：<b>${data.code}</b><br>
+            已發送時間：${new Date().toLocaleString()}
+          `;
+        }
+      } catch (err) {
+        console.error("❌ 取得禮卷失敗:", err);
+      }
+    }
+
     function showNext() {
       if (mode === "knowledge_initial") {
         if (kIndex < knowledge.length) {
@@ -128,6 +155,9 @@ fetch(`../data/${jsonFilename}`)
         updateProgress(totalQuestions, totalQuestions);
         document.getElementById("quiz-questions").innerHTML = "";
         document.getElementById("quiz-finish").classList.remove("hidden");
+
+        // 🎁 測驗結束後呼叫禮卷 API
+        fetchVoucher(userId);
       }
     }
 
@@ -149,7 +179,7 @@ fetch(`../data/${jsonFilename}`)
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": "3jnDfg4nw0wSDkb4295NBJkdwhuf378S" // 你的 API key
+          "x-api-key": "3jnDfg4nw0wSDkb4295NBJkdwhuf378S" 
         },
         body: JSON.stringify({
           user_id: userId,
@@ -180,7 +210,7 @@ fetch(`../data/${jsonFilename}`)
       }
 
       const userAnswer = selected.value;
-      let isCorrect = null;   // 預設 null
+      let isCorrect = null;   
 
       let q;
       if (mode === "knowledge_initial") {
@@ -217,16 +247,14 @@ fetch(`../data/${jsonFilename}`)
         resultText.textContent = "📝 回饋";
         lastAttitudeAnswered = true;
         explanationText.textContent = isAgree ? q.feedback.agree : q.feedback.disagree;
-        isCorrect = null; // 態度題沒有正確性
+        isCorrect = null; 
       }
 
-      // ✅ 這裡送答題紀錄
       sendAnswer(q, userAnswer, isCorrect);
 
       resultModal.classList.remove("hidden");
     };
 
-    // === closeModal ===
     window.closeModal = function () {
       if (lastCleared) {
         answeredCount = Math.min(answeredCount + 1, totalQuestions);
