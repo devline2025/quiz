@@ -106,10 +106,9 @@ fetch(`../data/${jsonFilename}`)
           document.getElementById("voucherSection").innerHTML = `❌ ${data.error}`;
         } else {
           document.getElementById("voucherSection").innerHTML = `
-            🎉 恭喜獲得禮卷！<br>
-            <a href="${data.url}" target="_blank">👉 點我領取禮卷</a><br>
+            🎉 恭喜獲得禮卷<br>
+            <a href="${data.url}" target="_blank" class="gift-link">👉 點我領取禮卷</a><br>
             領取代碼：<b>${data.code}</b><br>
-            已發送時間：${new Date().toLocaleString()}
           `;
         }
       } catch (err) {

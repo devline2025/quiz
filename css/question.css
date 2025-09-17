@@ -205,3 +205,16 @@
   text-decoration: underline;
   margin-top: 1rem;
 }
+
+.gift{
+  margin: 2rem;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.gift-link{
+  text-decoration: underline;
+  font-size: 2rem;
+  color: #f58b57;
+}
